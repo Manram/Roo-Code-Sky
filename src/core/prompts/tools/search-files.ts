@@ -2,19 +2,20 @@ import { ToolArgs } from "./types"
 
 export function getSearchFilesDescription(args: ToolArgs): string {
 	return `## search_files
-Description: Request to perform a regex search across files in a specified directory, providing context-rich results. This tool searches for patterns or specific content across multiple files, displaying each match with encapsulating context.
+Description: Regex search across files in a directory (context-rich results). Find code patterns, function usages, configs, etc. Helpful for codebase understanding and locating modification points.
+When to Use: (Codebase Insight - CRITICAL) Find info across multiple files (patterns, usages, configs). Understand codebase, locate modification areas.
 Parameters:
-- path: (required) The path of the directory to search in (relative to the current working directory ${args.cwd}). This directory will be recursively searched.
-- regex: (required) The regular expression pattern to search for. Uses Rust regex syntax.
-- file_pattern: (optional) Glob pattern to filter files (e.g., '*.ts' for TypeScript files). If not provided, it will search all files (*).
+- path: (required) Directory path to search (recursive).
+- regex: (required) Regex pattern (Rust syntax). (CRITICAL: Use Rust regex syntax!).
+- file_pattern: (optional) Glob pattern to filter files (e.g., '*.ts'). Default: all files (*).
 Usage:
 <search_files>
-<path>Directory path here</path>
-<regex>Your regex pattern here</regex>
-<file_pattern>file pattern here (optional)</file_pattern>
+<path>Directory path</path>
+<regex>Regex pattern</regex>
+<file_pattern>File pattern (optional)</file_pattern>
 </search_files>
 
-Example: Requesting to search for all .ts files in the current directory
+Example: Search for all .ts files in current directory
 <search_files>
 <path>.</path>
 <regex>.*</regex>

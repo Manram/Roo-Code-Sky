@@ -2,25 +2,26 @@ import { ToolArgs } from "./types"
 
 export function getInsertContentDescription(args: ToolArgs): string {
 	return `## insert_content
-Description: Inserts content at specific line positions in a file. This is the primary tool for adding new content and code (functions/methods/classes, imports, attributes etc.) as it allows for precise insertions without overwriting existing content. The tool uses an efficient line-based insertion system that maintains file integrity and proper ordering of multiple insertions. Beware to use the proper indentation. This tool is the preferred way to add new content and code to files.
+Description: (Preferred) Insert new content (code, text) at specific lines without overwriting. Ideal for adding functions, imports, etc. Uses line-based insertion, maintaining file integrity and order. (CRITICAL: Use proper indentation!). Efficient for multiple insertions.
 Parameters:
-- path: (required) The path of the file to insert content into (relative to the current working directory ${args.cwd.toPosix()})
-- operations: (required) A JSON array of insertion operations. Each operation is an object with:
-    * start_line: (required) The line number where the content should be inserted.  The content currently at that line will end up below the inserted content.
-    * content: (required) The content to insert at the specified position. IMPORTANT NOTE: If the content is a single line, it can be a string. If it's a multi-line content, it should be a string with newline characters (\n) for line breaks. Make sure to include the correct indentation for the content.
+- path: (required) File path to insert content into.
+- operations: (required) JSON array of insertion operations. Each operation:
+    * start_line: (required) Line number to insert at (current line's content moves down).
+    * content: (required) Content to insert. Single-line string or multi-line string with '\\n'.
 Usage:
 <insert_content>
-<path>File path here</path>
+<path>File path</path>
 <operations>[
   {
     "start_line": 10,
-    "content": "Your content here"
+    "content": "Your content"
   }
 ]</operations>
 </insert_content>
-Example: Insert a new function and its import statement
+
+Example: Insert function and import
 <insert_content>
-<path>File path here</path>
+<path>File path</path>
 <operations>[
   {
     "start_line": 1,

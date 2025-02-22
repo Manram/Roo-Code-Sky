@@ -1,6 +1,6 @@
 export function getAskFollowupQuestionDescription(): string {
 	return `## ask_followup_question
-Description: Ask the user a question to gather additional information needed to complete the task. This tool should be used when you encounter ambiguities, need clarification, or require more details to proceed effectively. It allows for interactive problem-solving by enabling direct communication with the user. Use this tool judiciously to maintain a balance between gathering necessary information and avoiding excessive back-and-forth.
+Description: Ask the user a specific question to gather necessary information for completing the task. Use this when facing ambiguities, needing clarification, or requiring more details. This enables interactive problem-solving. Be concise and avoid excessive questioning.
 Parameters:
 - question: (required) The question to ask the user. This should be a clear, specific question that addresses the information you need.
 Usage:
